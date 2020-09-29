@@ -14,7 +14,7 @@ module.exports = {
     {
       resolve: `@prismicio/gatsby-source-prismic-graphql`,
       options: {
-        repositoryName: repo[1], // Loads the repo name from prismic configuration
+        repositoryName: process.env.REPOSITORY_NAME, // Loads the repo name from prismic configuration
         accessToken: process.env.ACCESS_TOKEN,
         path: '/preview',
         previews: true,
