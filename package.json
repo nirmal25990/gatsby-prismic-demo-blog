@@ -6,6 +6,7 @@
   "author": "Levi Gable",
   "dependencies": {
     "@prismicio/gatsby-source-prismic-graphql": "^3.6.11",
+    "@sendgrid/mail": "^7.3.0",
     "gatsby": "^2.20.12",
     "gatsby-plugin-manifest": "^2.3.3",
     "gatsby-plugin-offline": "^3.1.2",

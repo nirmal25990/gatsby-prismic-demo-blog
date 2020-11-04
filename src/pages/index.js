@@ -60,7 +60,39 @@ const BlogHomeHead = ({ home }) => {
   );
 };
 
-export default ({ data }) => {
+export default ({ data, location }) => {
+  console.log("process.env.JWT_SECRET string - ", `${process.env.JWT_SECRET}`)
+  console.log(
+    "function url  - ",
+    `${location.protocol}//${location.host}${location.pathname}.netlify/functions/send-email`
+  )
+
+  const testEmail = () => {
+    let name = "nirmal"
+    var myHeaders = new Headers()
+    myHeaders.append("Content-Type", "application/json")
+
+    var raw = JSON.stringify({
+      to: "nirmal25990@gmail.com",
+      from: "Clear Air<noreply@clearair.io>",
+      subject: "Welcome to Clear Air",
+      html: `<strong>Production Just a test email ${name}</strong>`,
+    })
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    }
+
+    fetch(
+      `${location.protocol}//${location.host}${location.pathname}.netlify/functions/send-email`,
+      requestOptions
+    )
+      .then(response => console.log("response - ", response))
+      .catch(error => console.log("send email error", error))
+  }
   // Define the Blog Home & Blog Post content returned from Prismic
   const doc = data.prismic.allBlog_homes.edges.slice(0,1).pop();
   const posts = data.prismic.allPosts.edges;
@@ -70,6 +102,7 @@ export default ({ data }) => {
   return(
     <Layout>
       <BlogHomeHead home={ doc.node } />
+      <button onClick={() => testEmail()}> Send test email</button>
       <BlogPosts posts={ posts }/>
     </Layout>
   )
