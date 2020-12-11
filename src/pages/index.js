@@ -102,7 +102,7 @@ export default ({ data, location }) => {
   return(
     <Layout>
       <BlogHomeHead home={ doc.node } />
-      <button onClick={() => testEmail()}> Send test email</button>
+      <button style={{display: "none"}} onClick={() => testEmail()}> Send test email</button>
       <BlogPosts posts={ posts }/>
     </Layout>
   )
